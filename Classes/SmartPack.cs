@@ -15,7 +15,7 @@ namespace ECL.Classes
 
         
 
-        private void Reset() => settedBits = 0;
+        public void Reset() => settedBits = 0;
         public void SetBit(int bitNum, bool nvalue) => SetBits(bitNum, bitNum, nvalue ? 1u : 0u);
         public void SetBits(int start, int end, uint nvalue)
         {

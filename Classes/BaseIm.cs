@@ -11,8 +11,8 @@ namespace ECL.Classes
         public UInt16 command;
         public UInt32 status;
         public bool commandFault;
+		public SmartPack statusSet;	
 
-		//statusSet:smartPack:=(status:=status);	
 		//objectTable:TableDescriptor;
 		//_logTwoCommands:AloneLogMessage;
 	
@@ -24,10 +24,21 @@ namespace ECL.Classes
 		private bool _needResetCmd;
 		private bool _opcCommandsDisabled = false;
 
-		//_errorReset:TON:=(PT:=T#15S);
+		private _errorReset:TON:=(PT:=T#15S);
 		//_cmdReset:TON:=	(PT:=T#1S);
 
-		
+		public void Set()
+		{
+			_haveCommand = false;
+			statusSet.Reset();
+
+			//_errorReset(IN:= (_error <> 0));
+
+			_command = command;
+			command = 0;
+
+
+		}
 
 
     }
