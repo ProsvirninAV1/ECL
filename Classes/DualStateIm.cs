@@ -20,20 +20,11 @@ namespace ECL.Classes
 
         public StatusDualInput OnStatus { get; private set; }
 
-        public DualStateIm(ref ReliableBit statOn)
+        
+        public DualStateIm(ref ReliableBit statOn, ref ReliableBit statOff)
         {
-            this.statOn = statOn;
-        }
-
-        public DualStateIm()
-        {
-            
-        }
-
-        public DualStateIm(object statOff,  object statOn)
-        {
-            this.statOff =  (ReliableBit)statOff;
-            this.statOn = (ReliableBit)statOn;
+            this.statOn = statOn; 
+            this.statOff =  statOff;
         }
 
         public void Set()
@@ -41,8 +32,7 @@ namespace ECL.Classes
             OnStatus = GetStatus();
             _lastStatus = OnStatus;
 
-            base.Set();
-
+            //base.Set();
         }
 
         private StatusDualInput CalcStatus(bool statOn, bool statOff, bool reliability)
@@ -68,9 +58,6 @@ namespace ECL.Classes
                 else if (statOff != null) return CalcStatus(!statOff.value, statOff.value, statOff.reliability);
 
                 else return NoStatusLinks();
-           
-
-           
         }
 
         protected StatusDualInput NoStatusLinks()

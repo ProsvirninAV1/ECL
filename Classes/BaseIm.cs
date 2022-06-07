@@ -8,26 +8,17 @@ namespace ECL.Classes
 {
     class BaseIm
     {
-		public MyClass myClass = new MyClass(Status);
-        public UInt16 command;
-
-		public uint Status { get; private set; } = new();
-
-        public bool commandFault;
-
+		public uint command;
+	    public bool commandFault;
         public SmartPack statusSet;
 
-		public BaseIm() {
-
-
-			statusSet = new SmartPack(Status);
-		
+		public BaseIm()
+		{
+			statusSet = new SmartPack(ref _status);
 		}
 
-        //objectTable:TableDescriptor;
-        //_logTwoCommands:AloneLogMessage;
-
-        private UInt16 _command =0;
+		private uint _status;
+		private uint _command =0;
 		private bool _haveCommand;
 		private uint _cmd;
 		private uint _source;
@@ -51,7 +42,8 @@ namespace ECL.Classes
 
 
 		}
+		public uint Status { get => _status; }
+		
 
-
-    }
+	}
 }
