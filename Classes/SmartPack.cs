@@ -8,12 +8,22 @@ namespace ECL.Classes
 {
     class SmartPack
     {
-        //ref uint status;
-        public uint Status { get; private set; }
+        //private uint _status;
+        public UInt32 Status { get; set; }
         public uint settedBits;
         public string name;
+               
 
-        
+        public SmartPack(ref uint status)
+        {
+            Status = status;
+        }
+        public SmartPack(uint status)
+        {
+            Status = status;
+        }
+
+
 
         public void Reset() => settedBits = 0;
         public void SetBit(int bitNum, bool nvalue) => SetBits(bitNum, bitNum, nvalue ? 1u : 0u);

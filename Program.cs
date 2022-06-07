@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECL.Classes;
+using System;
 
 namespace ECL
 {
@@ -6,7 +7,12 @@ namespace ECL
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ReliableBit On = new();
+            ReliableBit Off = new();
+
+            DualStateIm dualStateIm = new(ref On);
+            DualStateIm dualStateIm1 = new() { statOn = null, statOff =  Off };
+            DualStateIm dualStateIm2 = new(null,  Off);
         }
     }
 }

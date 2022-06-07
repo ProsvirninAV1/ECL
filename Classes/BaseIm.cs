@@ -8,15 +8,26 @@ namespace ECL.Classes
 {
     class BaseIm
     {
+		public MyClass myClass = new MyClass(Status);
         public UInt16 command;
-        public UInt32 status;
-        public bool commandFault;
-		public SmartPack statusSet;	
 
-		//objectTable:TableDescriptor;
-		//_logTwoCommands:AloneLogMessage;
-	
-		private UInt16 _command =0;
+		public uint Status { get; private set; } = new();
+
+        public bool commandFault;
+
+        public SmartPack statusSet;
+
+		public BaseIm() {
+
+
+			statusSet = new SmartPack(Status);
+		
+		}
+
+        //objectTable:TableDescriptor;
+        //_logTwoCommands:AloneLogMessage;
+
+        private UInt16 _command =0;
 		private bool _haveCommand;
 		private uint _cmd;
 		private uint _source;
@@ -24,8 +35,9 @@ namespace ECL.Classes
 		private bool _needResetCmd;
 		private bool _opcCommandsDisabled = false;
 
-		private _errorReset:TON:=(PT:=T#15S);
-		//_cmdReset:TON:=	(PT:=T#1S);
+		private CmdTimer _errorReset = new CmdTimer(12000);
+		private CmdTimer _cmdReset = new CmdTimer(1000);
+		
 
 		public void Set()
 		{
