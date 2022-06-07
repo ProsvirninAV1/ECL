@@ -7,16 +7,18 @@ namespace ECL
     {
         static void Main(string[] args)
         {
-            ReliableBit On = new() { value = true };
-            ReliableBit Off = new() { value = false };
+            ReliableBit On = new() { value = true, reliability = true };
+            ReliableBit Off = new() { value = false, reliability = true };
 
             DualStateIm dualStateIm = new(ref On, ref Off);
             dualStateIm.Set();
 
-            Console.WriteLine(dualStateIm.OnStatus);
-           
 
-            
+            Console.WriteLine(dualStateIm.OnStatus);
+            Console.WriteLine(dualStateIm.Status);
+
+
+
 
         }
     }

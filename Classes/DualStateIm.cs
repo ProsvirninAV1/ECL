@@ -30,6 +30,7 @@ namespace ECL.Classes
         public void Set()
         {
             OnStatus = GetStatus();
+            WriteImStatus();
             _lastStatus = OnStatus;
 
             //base.Set();
@@ -69,6 +70,11 @@ namespace ECL.Classes
             else return StatusDualInput.STATUS_NOTDEFINED;
         }
 
+        public void WriteImStatus()
+        {
+            statusSet.SetBits(0, 2, (uint)OnStatus);
+
+        }
 
     }
 }
