@@ -70,7 +70,7 @@ namespace ECL.Classes
             else return StatusDualInput.STATUS_NOTDEFINED;
         }
 
-        public void WriteImStatus()
+        private void WriteImStatus()
         {
             statusSet.SetBits(0, 2, (uint)OnStatus);
 
