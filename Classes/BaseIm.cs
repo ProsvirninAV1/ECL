@@ -44,6 +44,23 @@ namespace ECL.Classes
 		}
 		public uint Status { get => _status; }
 		
+		protected void SetCmd(uint nCmd)
+		{
+			_haveCommand = true;
+			_cmd = nCmd;
+			_error = 0;
+			_cmdReset.reset();
+			//_cmdReset.IN = true;
+			_needResetCmd = false;
+			WriteCommandToStatus();
+        }
+
+		private void WriteCommandToStatus()
+		{
+			statusSet.SetBits(23, 25, _error);
+			statusSet.SetBits(26, 28, _cmd);
+			statusSet.SetBits(29, 31, _source);
+        }
 
 	}
 }

@@ -57,6 +57,20 @@ namespace ECL.Classes
             _lastCmd = baseCmdOn;
         }
 
+        public void Off()
+        {
+            if (CmdOff != null)
+            {
+                CmdOff = true;
+
+                if (CmdOn != null) CmdOn = false;
+            }
+
+            else if (CmdOn != null) CmdOn = false;
+
+            _lastCmd = baseCmdOn;
+        }
+
         protected StatusDualInput GetStatus()
 
         {
