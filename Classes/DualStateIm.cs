@@ -12,6 +12,9 @@ namespace ECL.Classes
         public ReliableBit statOn { get; set; }
         public ReliableBit statOff { get; set; }
 
+        public bool? CmdOn;
+        public bool? CmdOff;
+
         private int _lastCmd;
         private StatusDualInput _lastStatus;
 
@@ -20,12 +23,16 @@ namespace ECL.Classes
 
         public StatusDualInput OnStatus { get; private set; }
 
-        
-        public DualStateIm(ref ReliableBit statOn, ref ReliableBit statOff)
+        public DualStateIm()
         {
-            this.statOn = statOn; 
-            this.statOff =  statOff;
+            //this.statOn = statOn;
+            //this.statOff = statOff;
         }
+        //public DualStateIm(ref ReliableBit? statOn, ref ReliableBit? statOff)
+        //{
+        //    this.statOn = statOn; 
+        //    this.statOff =  statOff;
+        //}
 
         public void Set()
         {
@@ -36,17 +43,18 @@ namespace ECL.Classes
             //base.Set();
         }
 
-        private StatusDualInput CalcStatus(bool statOn, bool statOff, bool reliability)
+        public void On()
         {
-            if (reliability)
+            if (CmdOn != null)
             {
-                if (statOn && !statOff) return StatusDualInput.STATUS_ON;
-                
-                else if (statOff && !statOn) return StatusDualInput.STATUS_OFF;
+                CmdOn = true;
 
-                else return StatusDualInput.STATUS_ERROR;
+                if (CmdOff != null) CmdOff = false;
             }
-            else return StatusDualInput.STATUS_NOTDEFINED;
+
+            else if (CmdOff != null) CmdOff = false;
+
+            _lastCmd = baseCmdOn;
         }
 
         protected StatusDualInput GetStatus()
@@ -70,10 +78,32 @@ namespace ECL.Classes
             else return StatusDualInput.STATUS_NOTDEFINED;
         }
 
+        private StatusDualInput CalcStatus(bool statOn, bool statOff, bool reliability)
+        {
+            if (reliability)
+            {
+                if (statOn && !statOff) return StatusDualInput.STATUS_ON;
+
+                else if (statOff && !statOn) return StatusDualInput.STATUS_OFF;
+
+                else return StatusDualInput.STATUS_ERROR;
+            }
+            else return StatusDualInput.STATUS_NOTDEFINED;
+        }
+
         private void WriteImStatus()
         {
             statusSet.SetBits(0, 2, (uint)OnStatus);
 
+        }
+
+        private void ResetOuts()
+        {
+            if (CmdOn != null && CmdOff != null)
+            {
+                CmdOn = false;
+                CmdOff = false;
+            }
         }
 
     }
