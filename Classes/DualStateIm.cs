@@ -34,7 +34,7 @@ namespace ECL.Classes
         //    this.statOff =  statOff;
         //}
 
-        public void Set()
+        public new void Set()
         {
             OnStatus = GetStatus();
             WriteImStatus();
@@ -111,7 +111,7 @@ namespace ECL.Classes
 
         }
 
-        private void ResetOuts()
+        public void ResetOuts()
         {
             if (CmdOn != null && CmdOff != null)
             {

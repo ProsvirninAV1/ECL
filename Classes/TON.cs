@@ -45,20 +45,24 @@ namespace ECL.Classes
 				timer.Stop();
 				timer.Start();
 			}
+			else timer.Stop();
 		}
 
-		public void Start(bool in)
+		public void Start(bool input)
 		{
-			In = in;
-			if (In)
-			{
-				timer.Stop();
-				timer.Start();
-			}
+			In = input;
+			Start();
 		}
 
-		public void reset()
+		public void Start(int time)
 		{
+			Delay = time;
+			Start();
+		}
+
+		public void Reset()
+		{
+			In = false;
 			timer.Stop();
 		}
 
