@@ -44,9 +44,15 @@ namespace ECL.Classes
         private bool ResetOutputs()
         {
             resetOutputs.Start(commandTime);
-            if (resetOutputs.Q) return true;
+
+            if (resetOutputs.Q)
+            {
+                ResetOuts();
+                return true;
+            }
+
             else return false;
-            ResetOuts();
+            
         }
     }
 

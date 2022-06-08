@@ -12,8 +12,8 @@ namespace ECL.Classes
         public ReliableBit statOn { get; set; }
         public ReliableBit statOff { get; set; }
 
-        public bool? CmdOn;
-        public bool? CmdOff;
+        public bool? CmdOn = null;
+        public bool? CmdOff = null;
 
         private int _lastCmd;
         private StatusDualInput _lastStatus;

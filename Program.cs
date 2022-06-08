@@ -10,13 +10,13 @@ namespace ECL
             ReliableBit? On = new() { value = false, reliability = true };
             ReliableBit? Off = new() { value = true, reliability = true };
 
-            bool CommandOn;
-            bool CommandOff;
+            bool? CommandOn = false;
+            bool? CommandOff = false;
 
             ////DualStateIm dualStateIm = new(ref On, ref Off);
             ////DualStateIm dualStateIm2 = new(ref On, null);
 
-            DualStateIm dualStateIm = new() { statOn = On, statOff = Off, ref CmdOn = CommandOn };
+            DualStateIm dualStateIm = new() { statOn = On, statOff = Off, CmdOn = CommandOn, CmdOff = CommandOff };
             //DualStateIm dualStateIm2 = new() { statOn = null, statOff = Off };
 
             //dualStateIm.Set();
@@ -30,13 +30,16 @@ namespace ECL
 
             //DualStateSwitch dualStateSwitch = new DualStateSwitch();
             //dualStateSwitch.Set();
-            TON ton = new TON(4000);
-            ton.In = true;
-            ton.Start();
-            while (true)
-            {
-                Console.WriteLine($"{ton.In} {ton.Q}");
-            }
+
+
+
+            //TON ton = new TON(4000);
+            //ton.In = true;
+            //ton.Start();
+            //while (true)
+            //{
+            //    Console.WriteLine($"{ton.In} {ton.Q}");
+            //}
             
             
             

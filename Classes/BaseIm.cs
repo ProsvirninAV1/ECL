@@ -26,8 +26,8 @@ namespace ECL.Classes
 		private bool _needResetCmd;
 		private bool _opcCommandsDisabled = false;
 
-		private CmdTimer _errorReset = new CmdTimer(12000);
-		private CmdTimer _cmdReset = new CmdTimer(1000);
+		private TON _errorReset = new TON(12000);
+		private TON _cmdReset = new TON(1000);
 		
 
 		public void Set()
@@ -49,8 +49,8 @@ namespace ECL.Classes
 			_haveCommand = true;
 			_cmd = nCmd;
 			_error = 0;
-			_cmdReset.reset();
-			//_cmdReset.IN = true;
+			_cmdReset.Reset();
+			_cmdReset.In = true;
 			_needResetCmd = false;
 			WriteCommandToStatus();
         }
